@@ -24,5 +24,8 @@ let App_Controller = new Controller(App_Storage, App_Main);
 
 App_Controller.init();
 App_Main.init();
+<<<<<<< HEAD
 console.log('Hello new branch!')
+=======
 console.log('This is main branch!')
+>>>>>>> master
