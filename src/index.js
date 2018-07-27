@@ -1,3 +1,5 @@
+import './scss/main.scss';
+
 import {Header} from './Components/Header.js'
 import {App} from './Components/App.js'
 import { WeatherContainer } from './Components/WeatherContainer.js'
