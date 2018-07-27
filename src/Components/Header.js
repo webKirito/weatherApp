@@ -1,6 +1,6 @@
 export class Header {
     constructor() {
-        this.options = [Math.random(),Math.random(),Math.random()];
+        this.options = [];
     }
 
     renderOption(opt) {
@@ -13,13 +13,18 @@ export class Header {
 
     }
 
-    render() {
-        this.options = [Math.random(),Math.random(),Math.random()];
+    render(options = []) {
+        this.options = options;
         return `
         <header>
-            ${this.options.map((opt) => { 
-                return this.renderOption(opt)
-            }).join(``)}
+            <button class="toggleSettings">Settings</button>
+            <input type="text" class="user-input" list="user-input">
+                <datalist id='user-input'>
+                ${this.options.map((opt) => { 
+                    return this.renderOption(opt)
+                }).join(``)}
+                </datalist>
+            <button class="addCity">Add city</button>
         </header>
         `
     }
