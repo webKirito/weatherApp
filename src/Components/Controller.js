@@ -121,14 +121,16 @@ export class Controller {
             console.log(target);
         });
 
-        $.delegate(appView, '.user-input', 'keyup', ({target}) => {
-            console.log(target.value);
-        })
+        $.delegate(appView, '.fa-cog', 'click', ({target}) => {
+            console.log(1);
+        }, true)
 
-        $.delegate(appView, '.addCity', 'click', ({target}) => {
+        $.delegate(appView, '.addCityBtn', 'click', (e) => {
+            e.stopPopagation();
             let input = $.qs('.user-input');
-            if (!input.value.trim()) {
-                let datalist = $.qs('#user-input');
+            
+            if (input.value.trim()) {
+                let datalist = $.qs('#datalist');
                 datalist.innerHTML += this.app.parts['header'].renderOption(input.value);
                 input.value = "";
             }

@@ -22,7 +22,7 @@ export class Header {
                     return this.renderOption(opt)
                 }).join(``)}
                 </datalist>
-            <button class="addCityBtn">Add city</button>
+            <button class="addCityBtn"><i class="fa fa-plus"></i></button>
         </header>
         `
     }
