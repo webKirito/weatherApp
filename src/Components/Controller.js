@@ -1,3 +1,5 @@
+import {$} from './$.js';
+
 export class Controller {
     constructor(storage, app) {
         this.app = app;
@@ -114,16 +116,39 @@ export class Controller {
 
     init() {
         let appView = document.getElementById('App');
-        
-        appView.addEventListener('click', (e) => {
-            if (e.target.className === 'option') {
-                let opt = e.target;
-                opt.textContent !== 'Yes' ? opt.textContent = "Yes" : opt.textContent = 'No';
-                // this.app.render();
 
-                console.log('Site was rendered!');
+        $.delegate(appView, '.option', 'click', ({target}) => {
+            console.log(target);
+        });
+
+        $.delegate(appView, '.user-input', 'keyup', ({target}) => {
+            console.log(target.value);
+        })
+
+        $.delegate(appView, '.addCity', 'click', ({target}) => {
+            let input = $.qs('.user-input');
+            if (!input.value.trim()) {
+                let datalist = $.qs('#user-input');
+                datalist.innerHTML += this.app.parts['header'].renderOption(input.value);
+                input.value = "";
             }
-        }, false);
+            
+        })
+        
+
+        // Should be used!
+        
+        // appView.addEventListener('click', (e) => {
+        //     if (e.target.className === 'option') {
+        //         let opt = e.target;
+        //         opt.textContent !== 'Yes' ? opt.textContent = "Yes" : opt.textContent = 'No';
+        //         // this.app.render();
+
+        //         console.log('Site was rendered!');
+        //     }
+        // }, false);
+
+        // Rewrite
 
         // userInputDatalist.addEventListener('click', (e) => {
         //     e.preventDefault();

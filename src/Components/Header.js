@@ -5,7 +5,7 @@ export class Header {
 
     renderOption(opt) {
         return `
-            <div class = 'option'">${opt}</div>
+            <option class = 'option'">${opt}</option>
         `
     }
 
@@ -13,7 +13,7 @@ export class Header {
 
     }
 
-    render(options = []) {
+    render(options = [1,2,3,4]) {
         this.options = options;
         return `
         <header>
