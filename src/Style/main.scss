@@ -1,268 +1,70 @@
 @import 'reset.css';
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-$headerBgColor : rgba(33, 36, 41, 0.857);
-$fontFamily : arial;
-$siteBgColor : red;
-$placeItemBgColor : rgb(33, 36, 41);
-$headerTitleBgColor: rgb(161, 161, 255);
-$headerTitleColor: black;
 
+$AppBgColor: black;
+$AppHeaderBgColor: red;
+$AppBtnBgColor: grey;
+$MediumFontSize: 15px;
+$HeaderHeight: 100px;
+$BtnScaleConst: 1.1;
 
-@mixin border-radius($radius) {
-    -webkit-border-radius: $radius;
-       -moz-border-radius: $radius;
-        -ms-border-radius: $radius;
-            border-radius: $radius;
+@mixin flex($fl-d : row, $al-i : center, $js-c : center) {
+    display: flex;
+    flex-direction: $fl-d;
+    align-items: $al-i;
+    justify-content: $js-c;
 }
-
-@mixin scale($scaleNumber) {
-    transform: scale($scaleNumber);
+@mixin radius($b-r) {
+    border-radius: $b-r;
 }
 
 body {
+    background-color: $AppBgColor;
+}
+#App {
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    background-color: $placeItemBgColor;
-}
-
-option {
-    outline: none;
-    background: rgba(255, 255, 255, 0.344);
-}
-
-.toggleSettings {
-    display: flex;
-    outline: none;
-    font-size: 2vh;
-    padding: 1.5vh;
-    border: none;
-    background-color: rgb(255, 255, 255);
-    border-radius: 15px;
-}
-
-.toggleSettings:hover {
-    cursor: pointer;
-    @include scale(1.1);
+    width: 100vw;
+    header {
+        @include flex(row, center, space-around);
+        height: $HeaderHeight;
+        background-color: $AppHeaderBgColor;
+    }
 }
 
 header {
-    display: flex;
-    align-items: center;
-    background-color: $headerBgColor;
-    width: 100%;
-    height: 15vh;
-    justify-content: space-around;
-    position: sticky;
-    top: 0px;
-    z-index: 2;
-    border-bottom: 3px solid grey;
-    .addCity {
+    .toggleSettingsBtn {
+        @include flex();
+        width: 50px;
+        height: 50px;
+        @include radius(25px);
+    }
+    .addCityBtn {
+        @include radius(10px);
+    }
+    .toggleSettingsBtn, .addCityBtn{
+        background-color: $AppBtnBgColor;
         outline: none;
-        font-size: 2vh;
-        padding: 1.5vh;
-        border-radius: 15px;
-        border: none;
-        background-color: rgb(255, 255, 255);
-        box-shadow: 4px 4px 20px -1px rgba(0,0,0,0.64);
+        border : none;
+        font-size: $MediumFontSize;
+        margin: 10px;
+        padding: 10px;
+        cursor: pointer;
+        transition: .05s all linear;
+    }
+    .toggleSettingsBtn:hover, .addCityBtn:hover {
+        transform: scale($BtnScaleConst);
     }
     .user-input {
-        font-size: 3vh;
-        width: 50%;
-        margin: 10px;
-        border-radius: 7.5vh;
         outline: none;
-        border: none;
-        padding: 3px;
-        text-align: center;
-        box-shadow: 4px 4px 20px -1px rgba(0,0,0,0.64);
-    }
-    .addCity:hover {
-        @include scale(1.05);
-        box-shadow: 6px 6px 20px 2px rgba(0,0,0,0.64);
-    }
-}
-
-.places {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    flex: 1 0 auto;
-    .place-item {
-        display: flex;
-        align-items: center;
-        justify-content:center;
-        flex-direction: column;
-        width: 100%;
-        background-color: $placeItemBgColor;
-        border-bottom: 3px solid grey;
-        .place-title {
-            font-size: 20px;
-            border-radius: 15px;
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-            margin: 10px;
-            box-shadow: 4px 4px 20px -1px rgba(0,0,0,0.64);
-        }
-        .place-title:hover {    
-            @include scale(1.05);
-            cursor: pointer;
-        }
-        .delete-btn {
-            font-size: 20px;
-            padding: 5px;
-            border-radius: 10px;
-            margin: 10px;
-            border: none;
-            box-shadow: 4px 4px 20px -1px rgba(0,0,0,0.64);
-        }
-        .delete-btn:hover {
-            box-shadow: 6px 6px 20px 2px rgba(0,0,0,0.64);
-            @include scale(1.05);
-            cursor: pointer;
-        }
-        .place-weather-container{
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            &.is-shown {
-                display: flex;
-            }
-
-            .weather-item {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: white;
-                @include border-radius(20px);
-                box-shadow: 8px 8px 20px -1px rgba(0,0,0,0.64);
-                padding: 10px;
-                min-width: 270px;
-                margin: 10px;
-
-                .title {
-                    font-size: 20px;
-                    font-weight: bold;
-                }
-                .wraper {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                }
-                .temperature {
-                    font-size: 15px;
-                    padding: 5px;
-                }
-                .description {
-                    text-align: center;
-                }
-            }
-        }
-        
-          
-    }
-}
-
-.footer {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%; 
-    background-color: $placeItemBgColor;
-    flex-shrink: 0;
-    .wrap {
-        width: 200px;
-        margin: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: white;
-        @include border-radius(20px);
-        box-shadow: 8px 8px 20px -1px rgba(0,0,0,0.64);
+        border : none;
+        font-size: $MediumFontSize; 
+        width: 50vw;
         padding: 10px;
-        .label {
-            text-align: center;
-        }
+        @include radius(20px);
     }
-    .f-to-c {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        margin: 10px;
-        width: 200px;
-        background-color: white;
-        @include border-radius(20px);
-        box-shadow: 8px 8px 20px -1px rgba(0,0,0,0.64);
-        padding: 10px;
+    i {
+        font-size: 25px !important;
     }
-    #f-to-c {
-        font-size: 20px;
-    } 
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 80px;
-    height: 36px;
-    .switch input {display:none;}
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 32px;
-    width: 32px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: $placeItemBgColor;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px $placeItemBgColor;
-  }
-  
-  input {
-      outline : none;
-  }
-
-  input:checked + .slider:before {
-    -webkit-transform: translateX(44px);
-    -ms-transform: translateX(44px);
-    transform: translateX(44px);
-  }
-}
-
-.is-shown {
-    display: flex !important; }
-  
-   .hide {
-     display: none !important;
-   }

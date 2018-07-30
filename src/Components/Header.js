@@ -9,22 +9,20 @@ export class Header {
         `
     }
 
-    optionOnClick() {
 
-    }
 
     render(options = [1,2,3,4]) {
         this.options = options;
         return `
         <header>
-            <button class="toggleSettings">Settings</button>
-            <input type="text" class="user-input" list="user-input">
-                <datalist id='user-input'>
+            <button class="toggleSettingsBtn"><i class="fa fa-cog"></i></button>
+            <input type="text" class="user-input" list="datalist">
+                <datalist id='datalist'>
                 ${this.options.map((opt) => { 
                     return this.renderOption(opt)
                 }).join(``)}
                 </datalist>
-            <button class="addCity">Add city</button>
+            <button class="addCityBtn">Add city</button>
         </header>
         `
     }

@@ -13,9 +13,7 @@ export class App {
         let appHtml = this.entryHtmlComponent.innerHTML = '';
         appHtml = Object.values(this.parts).map((part) => {
             return part.render();
-        }).join('');
-        // console.log(appHtml);
-        
+        }).join(''); 
         this.entryHtmlComponent.innerHTML = appHtml;
         console.log('App was rerendered');
         
